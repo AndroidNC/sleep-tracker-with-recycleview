@@ -27,7 +27,7 @@ import com.example.android.trackmysleepquality.convertDurationToFormatted
 import com.example.android.trackmysleepquality.convertNumericQualityToString
 import com.example.android.trackmysleepquality.database.SleepNight
 
-class SleepNightAdapter : RecyclerView.Adapter<SleepNightAdapter.viewHolder>() {
+class SleepNightAdapter : RecyclerView.Adapter<SleepNightAdapter.ViewHolder>() {
     var data = listOf<SleepNight>()
     set(value) {
         field = value
@@ -36,18 +36,16 @@ class SleepNightAdapter : RecyclerView.Adapter<SleepNightAdapter.viewHolder>() {
 
     override fun getItemCount() = data.size
 
-    override fun onBindViewHolder(holder: viewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
         holder.bind(item)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val view = layoutInflater.inflate(R.layout.list_item_sleep_night, parent, false)
-        return viewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder.from(parent)
     }
 
-    class viewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    class ViewHolder private constructor(itemView: View): RecyclerView.ViewHolder(itemView) {
         val sleepLength : TextView = itemView.findViewById(R.id.sleep_length)
         val sleepQuality : TextView = itemView.findViewById(R.id.quality_string)
         val qualityImage: ImageView = itemView.findViewById(R.id.quality_image)
@@ -67,5 +65,15 @@ class SleepNightAdapter : RecyclerView.Adapter<SleepNightAdapter.viewHolder>() {
                         else -> R.drawable.ic_sleep_active
                     })
         }
+
+        companion object {
+            fun from(parent: ViewGroup): ViewHolder {
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val view = layoutInflater.inflate(R.layout.list_item_sleep_night, parent, false)
+                return ViewHolder(view)
+            }
+        }
     }
+
+
 }
