@@ -69,6 +69,15 @@ class SleepTrackerFragment : Fragment() {
 
         //Assigning GridLayout to Recycle view sleepList
         val manager = GridLayoutManager(context, 3)
+        //Set span size to 3 for the Header
+        manager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int): Int {
+                return when(position) {
+                    0 -> 3
+                    else -> 1
+                }
+            }
+        }
         binding.sleepList.layoutManager = manager
 
         val adapter = SleepNightAdapter(SleepNightAdapter.SleepNightListener { nightId ->
