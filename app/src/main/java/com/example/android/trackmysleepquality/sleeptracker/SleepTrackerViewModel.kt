@@ -128,15 +128,30 @@ class SleepTrackerViewModel(
         _navigateToSleepQuality.value = null
     }
 
+    private var _navigateToSleepDetail = MutableLiveData<Long>()
+
+    val navigateToSleepDetail
+    get() = _navigateToSleepDetail
+
+    fun doneNavigatingToSleepDetail() {
+        _navigateToSleepDetail.value = null
+    }
+
+    fun onSleepNightClicked(nightId : Long) {
+        _navigateToSleepDetail.value = nightId
+    }
+
     init {
         initializeTonight()
     }
+
 
     private fun initializeTonight() {
         uiScope.launch {
             tonight.value = getTonightFromDatabase()
         }
     }
+
 
     /**
      *  Handling the case of the stopped app or forgotten recording,
