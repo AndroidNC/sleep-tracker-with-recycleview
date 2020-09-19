@@ -15,7 +15,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:onClick="@{() -> sleepNightListener.onClick(sleepNight)}">
 
         <ImageView
             android:id="@+id/quality_image"
@@ -29,7 +30,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_sleep_5"
             app:sleepQualityImage="@{sleepNight}"
-            android:onClick="@{() -> sleepNightListener.onClick(sleepNight)}"/>
+           />
 
 <!--        <TextView-->
 <!--            android:id="@+id/sleep_length"-->
@@ -57,7 +58,7 @@
             app:layout_constraintTop_toBottomOf="@+id/quality_image"
             app:sleepQualityString="@{sleepNight}"
             tools:text="Excellent"
-            android:onClick="@{() -> sleepNightListener.onClick(sleepNight)}"/>
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
