@@ -26,11 +26,11 @@ import com.example.android.trackmysleepquality.convertNumericQualityToString
 import com.example.android.trackmysleepquality.database.SleepNight
 import com.example.android.trackmysleepquality.databinding.ListItemSleepNightBinding
 
-class SleepNightAdapter : androidx.recyclerview.widget.ListAdapter<SleepNight, SleepNightAdapter.ViewHolder>(SleepNightDiffCallback()) {
+class SleepNightAdapter(val sleepNightListener: SleepNightListener) : androidx.recyclerview.widget.ListAdapter<SleepNight, SleepNightAdapter.ViewHolder>(SleepNightDiffCallback()) {
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item)
+        holder.bind(item, sleepNightListener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -39,8 +39,9 @@ class SleepNightAdapter : androidx.recyclerview.widget.ListAdapter<SleepNight, S
 
     class ViewHolder private constructor(val binding: ListItemSleepNightBinding): RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: SleepNight) {
+        fun bind(item: SleepNight, sleepNightListener: SleepNightListener) {
             binding.sleepNight = item
+            binding.sleepNightListener = sleepNightListener
             binding.executePendingBindings() //always good idea to execute pendingbindings so that it will be little bit faster
         }
 
@@ -63,4 +64,7 @@ class SleepNightAdapter : androidx.recyclerview.widget.ListAdapter<SleepNight, S
         }
     }
 
+    class SleepNightListener(val clickListener: (sleepId: Long) -> Unit) {
+        fun onClick(sleep: SleepNight) = clickListener(sleep.nightId)
+    }
 }
