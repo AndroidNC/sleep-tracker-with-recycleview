@@ -27,29 +27,32 @@
             app:srcCompat="@drawable/ic_sleep_5"
             app:sleepQualityImage="@{sleepNight}"/>
 
-        <TextView
-            android:id="@+id/sleep_length"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+<!--        <TextView-->
+<!--            android:id="@+id/sleep_length"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
 
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toEndOf="@+id/quality_image"
-            app:layout_constraintTop_toTopOf="@+id/quality_image"
-            tools:text="Wednesday"
-            app:sleepDurationFormatted="@{sleepNight}"/>
+<!--            android:layout_marginStart="16dp"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/quality_image"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/quality_image"-->
+<!--            tools:text="Wednesday"-->
+<!--            app:sleepDurationFormatted="@{sleepNight}"/>-->
 
         <TextView
             android:id="@+id/quality_string"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
 
-            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/quality_image"
-            app:layout_constraintStart_toEndOf="@+id/quality_image"
-            tools:text="Excellent"
-            app:sleepQualityString="@{sleepNight}"/>
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/quality_image"
+            app:layout_constraintStart_toStartOf="@+id/quality_image"
+            app:layout_constraintTop_toBottomOf="@+id/quality_image"
+            app:sleepQualityString="@{sleepNight}"
+            tools:text="Excellent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
